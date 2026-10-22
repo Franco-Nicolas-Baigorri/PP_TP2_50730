@@ -1,0 +1,132 @@
+TP 2 - Paradigmas de Programación
+Franco Nicolás Baigorri - Legajo 50730
+
+=== Inscripción de estudiantes ===
+Cupo excedido en actividad Exposición de proyectos: No se pudo inscribir al estudiante Ernestina Erlanga (L#50505)
+Cupo excedido en actividad Presentación de la jornada: No se pudo inscribir al estudiante Daniela Daniele (L#50504)
+Cupo excedido en actividad Presentación de la jornada: No se pudo inscribir al estudiante Ernestina Erlanga (L#50505)
+Cupo excedido en actividad Programación en equipo: No se pudo inscribir al estudiante Daniela Daniele (L#50504)
+Cupo excedido en actividad Programación en equipo: No se pudo inscribir al estudiante Ernestina Erlanga (L#50505)
+Cupo excedido en actividad Presentación de resultados: No se pudo inscribir al estudiante Daniela Daniele (L#50504)
+Cupo excedido en actividad Presentación de resultados: No se pudo inscribir al estudiante Ernestina Erlanga (L#50505)
+
+Eventos creados: 3
+
+=== Guardado y recuperación de eventos ===
+Evento guardado y recuperado: A87E45
+Evento guardado y recuperado: HK18HZ
+Evento guardado y recuperado: PP210M
+
+=== Resumen de los eventos recuperados ===
+
+Evento "Jornadas de Arduino" (ID#A87E45):
+Gratuito: NO
+
+Sala: Sala de Conferencias de Electrónica
+Costo: ARS 188155.0
+Actividades:
+Actividad 1001: Introducción a Arduino
+Tipo: Curso
+Nivel: 3
+Certificaciones:
+Se certifica que el estudiante Franco Nicolás Baigorri, Legajo nº50730 asistió al curso "Introducción a Arduino"
+Se certifica que el estudiante Bernardo Beltrán, Legajo nº50502 asistió al curso "Introducción a Arduino"
+Se certifica que el estudiante Camila Canales, Legajo nº50503 asistió al curso "Introducción a Arduino"
+Se certifica que el estudiante Daniela Daniele, Legajo nº50504 asistió al curso "Introducción a Arduino"
+Se certifica que el estudiante Ernestina Erlanga, Legajo nº50505 asistió al curso "Introducción a Arduino"
+Estudiantes inscriptos en actividad "Introducción a Arduino":
+Franco Nicolás Baigorri (L#50730)
+Bernardo Beltrán (L#50502)
+Camila Canales (L#50503)
+Daniela Daniele (L#50504)
+Ernestina Erlanga (L#50505)
+
+Actividad 1002: Servidor casero con Arduino
+Tipo: Taller
+Requiere notebook: SI
+Certificaciones:
+Se certifica que el estudiante Franco Nicolás Baigorri, Legajo nº50730 asistió al taller "Servidor casero con Arduino"
+Se certifica que el estudiante Bernardo Beltrán, Legajo nº50502 asistió al taller "Servidor casero con Arduino"
+Se certifica que el estudiante Camila Canales, Legajo nº50503 asistió al taller "Servidor casero con Arduino"
+Se certifica que el estudiante Daniela Daniele, Legajo nº50504 asistió al taller "Servidor casero con Arduino"
+Se certifica que el estudiante Ernestina Erlanga, Legajo nº50505 asistió al taller "Servidor casero con Arduino"
+Estudiantes inscriptos en actividad "Servidor casero con Arduino":
+Franco Nicolás Baigorri (L#50730)
+Bernardo Beltrán (L#50502)
+Camila Canales (L#50503)
+Daniela Daniele (L#50504)
+Ernestina Erlanga (L#50505)
+
+
+Charlas: 0 | Costo de materiales: 0.0
+Talleres: 1 | Costo de materiales: 5000.0
+Cursos: 1 | Costo de materiales: 500.0
+
+Evento "Exposición de proyectos" (ID#HK18HZ):
+Gratuito: SI
+
+Sala: Salón de Usos Múltiples
+Costo: ARS 0.0
+Actividades:
+Actividad 2001: Exposición de proyectos
+Tipo: Charla
+Disertante: Docente invitado
+Estudiantes inscriptos en actividad "Exposición de proyectos":
+Franco Nicolás Baigorri (L#50730)
+Bernardo Beltrán (L#50502)
+Camila Canales (L#50503)
+Daniela Daniele (L#50504)
+
+Actividad 2002: Cierre de la exposición
+Tipo: Charla
+Disertante: Docente invitado
+Estudiantes inscriptos en actividad "Cierre de la exposición":
+Franco Nicolás Baigorri (L#50730)
+Bernardo Beltrán (L#50502)
+Camila Canales (L#50503)
+Daniela Daniele (L#50504)
+Ernestina Erlanga (L#50505)
+
+
+Charlas: 2 | Costo de materiales: 0.0
+Talleres: 0 | Costo de materiales: 0.0
+Cursos: 0 | Costo de materiales: 0.0
+
+Evento "Jornadas de programación" (ID#PP210M):
+Gratuito: SI
+
+Sala: Laboratorio de Informática
+Costo: ARS 0.0
+Actividades:
+Actividad 3001: Presentación de la jornada
+Tipo: Charla
+Disertante: Docente invitado
+Estudiantes inscriptos en actividad "Presentación de la jornada":
+Franco Nicolás Baigorri (L#50730)
+Bernardo Beltrán (L#50502)
+Camila Canales (L#50503)
+
+Actividad 3002: Programación en equipo
+Tipo: Taller
+Requiere notebook: SI
+Certificaciones:
+Se certifica que el estudiante Franco Nicolás Baigorri, Legajo nº50730 asistió al taller "Programación en equipo"
+Se certifica que el estudiante Bernardo Beltrán, Legajo nº50502 asistió al taller "Programación en equipo"
+Se certifica que el estudiante Camila Canales, Legajo nº50503 asistió al taller "Programación en equipo"
+Estudiantes inscriptos en actividad "Programación en equipo":
+Franco Nicolás Baigorri (L#50730)
+Bernardo Beltrán (L#50502)
+Camila Canales (L#50503)
+
+Actividad 3003: Presentación de resultados
+Tipo: Charla
+Disertante: Docente invitado
+Estudiantes inscriptos en actividad "Presentación de resultados":
+Franco Nicolás Baigorri (L#50730)
+Bernardo Beltrán (L#50502)
+Camila Canales (L#50503)
+
+
+Charlas: 2 | Costo de materiales: 0.0
+Talleres: 1 | Costo de materiales: 5000.0
+Cursos: 0 | Costo de materiales: 0.0
