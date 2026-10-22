@@ -3,6 +3,7 @@ package modelo.actividades;
 import modelo.Inscripcion;
 import modelo.Estudiante;
 import excepciones.CupoExcedidoException;
+import utils.Consola;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -23,6 +24,12 @@ public abstract class Actividad
     public static final int CUPO_MINIMO = 0;
 
     public Actividad(int id, String titulo, int cupoMaximo) {
+        if (titulo == null || titulo.isBlank()) {
+            throw new IllegalArgumentException("El título de la actividad es obligatorio.");
+        }
+        if (cupoMaximo < CUPO_MINIMO) {
+            throw new IllegalArgumentException("El cupo de la actividad debe ser como mínimo " + CUPO_MINIMO + ".");
+        }
         this.id = id;
         this.titulo = titulo;
         this.cupoMaximo = cupoMaximo;
@@ -34,6 +41,9 @@ public abstract class Actividad
     public abstract String getTipo();
 
     public Inscripcion inscribir(Estudiante estudiante) throws CupoExcedidoException {
+        if (estudiante == null) {
+            throw new IllegalArgumentException("Se necesita un estudiante para realizar la inscripción.");
+        }
         // Manejo de excepciones al exceder cupo
         if (inscripciones.size() >= cupoMaximo) {
             throw new CupoExcedidoException(
@@ -52,20 +62,22 @@ public abstract class Actividad
 
     public void mostrarInscripciones() {
         if (inscripciones.isEmpty()) {
-            System.out.println("No hay inscriptos en esta actividad.");
+            Consola.mostrar("No hay inscriptos en esta actividad.");
             return;
         }
 
-        System.out.println("Estudiantes inscriptos en actividad \"" + titulo + "\":");
+        Consola.mostrar("Estudiantes inscriptos en actividad \"" + titulo + "\":");
 
         for (Inscripcion i : inscripciones) {
             Estudiante e = i.getEstudiante();
-            System.out.println(e.getNombre() + " (L#" + e.getLegajo() + ")");
+            Consola.mostrar(e.getNombre() + " (L#" + e.getLegajo() + ")"
+                    + " | Estado: " + i.getEstado()
+                    + " | Ticket: " + (i.getTicket() != null ? "emitido" : "sin emitir"));
         }
     }
 
     public final void mostrarIdentificacion() {
-        System.out.println(
+        Consola.mostrar(
                 "ACTIVIDAD: \"" + this.titulo +   "\" (ID: " + this.id + ")"
         );
     }

@@ -5,6 +5,7 @@ import modelo.actividades.Charla;
 import modelo.actividades.Curso;
 import modelo.actividades.Taller;
 import utils.FileUtils;
+import utils.Consola;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -87,12 +88,19 @@ public class EventoUniversitario
         this.sala = sala;
     }
 
+    /** Firma del diagrama; se adopta un cupo de demostración de cinco lugares. */
+    public void crearActividad(int id, String titulo, String tipo) {
+        crearActividad(id, titulo, 5, tipo);
+    }
+
     public void crearActividad(int id, String titulo, int cupo, String tipo)
     {
         if (cupo < Actividad.CUPO_MINIMO) {
-            System.err.println("ERROR: CREANDO ACTIVIDAD CON CUPO MENOR AL"
-                    + " MINIMO, ABORTANDO CREACIÓN DE ACTIVIDAD.\n");
-            return;
+            throw new IllegalArgumentException("El cupo de la actividad debe ser como mínimo "
+                    + Actividad.CUPO_MINIMO + ".");
+        }
+        if (tipo == null) {
+            throw new IllegalArgumentException("Se necesita indicar el tipo de actividad.");
         }
 
         Actividad nueva_actividad;
@@ -108,16 +116,14 @@ public class EventoUniversitario
                 nueva_actividad = new Curso(id, titulo, cupo, 3);
                 break;
             default:
-                System.err.println("ERROR: INGRESADO TIPO DE ACTIVIDAD INVALIDO."
-                        + " ABORTANDO CREACIÓN DE ACTIVIDAD.");
-                return;
+                throw new IllegalArgumentException("Tipo de actividad inválido: " + tipo);
         }
 
         actividades.add(nueva_actividad);
     }
 
     public void mostrarDatos() {
-        System.out.println(
+        Consola.mostrar(
                 "Evento \"" + this.titulo + "\" (ID#" + this.id + "):\n"
                         +   "Gratuito: " + (gratuito ? "SI" : "NO") + "\n\n"
                         +   "Sala: " + sala.getNombre() + "\n"
@@ -126,28 +132,28 @@ public class EventoUniversitario
         );
 
         for (Actividad a : actividades) {
-            System.out.println(
+            Consola.mostrar(
                     "Actividad " + a.getId() + ": " + a.getTitulo() + "\nTipo: " + a.getTipo()
             );
             switch (a.getTipo()) {
                 case "Charla":
-                    System.out.println("Disertante: " + ((Charla)a).getDisertante());
+                    Consola.mostrar("Disertante: " + ((Charla)a).getDisertante());
                     break;
                 case "Taller":
-                    System.out.println(
+                    Consola.mostrar(
                             "Requiere notebook: "
                         +   (((Taller)a).getRequiereNotebook() ? "SI" : "NO" )
                     );
-                    System.out.println("Certificaciones:");
+                    Consola.mostrar("Certificaciones:");
                     for (Inscripcion i : a.getInscripciones()) {
-                        System.out.println(((Taller)a).generarCertificado(i.getEstudiante()));
+                        Consola.mostrar(((Taller)a).generarCertificado(i.getEstudiante()));
                     }
                     break;
                 case "Curso":
-                    System.out.println("Nivel: " + ((Curso)a).getNivel());
-                    System.out.println("Certificaciones:");
+                    Consola.mostrar("Nivel: " + ((Curso)a).getNivel());
+                    Consola.mostrar("Certificaciones:");
                     for (Inscripcion i : a.getInscripciones()) {
-                        System.out.println(((Curso)a).generarCertificado(i.getEstudiante()));
+                        Consola.mostrar(((Curso)a).generarCertificado(i.getEstudiante()));
                     }
                     break;
             }
@@ -156,9 +162,9 @@ public class EventoUniversitario
             // Asumimos en este punto que no hay tipos incorrectos
 
             a.mostrarInscripciones();
-            System.out.println();
+            Consola.mostrar("");
         }
-        System.out.println();
+        Consola.mostrar("");
     }
 
     public static int getCantidadEventos() {
@@ -174,55 +180,34 @@ public class EventoUniversitario
     {
         // También se crea la carpeta al ejecutar App desde IntelliJ.
         Files.createDirectories(Paths.get(FileUtils.PATH_EVENTS));
-        FileOutputStream fos = null;
-        ObjectOutputStream oos = null;
-
-        try {
-            fos = new FileOutputStream(
+        try (FileOutputStream fos = new FileOutputStream(
                     FileUtils.PATH_EVENTS
                   + FileUtils.getFormattedNameForEventID(id)
-            );
-            oos = new ObjectOutputStream(fos);
-
+            ); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
             oos.writeObject(this);
         }
-        finally {
-            if (oos != null) {
-                oos.close();
-            } else if (fos != null) {
-                fos.close();
-            }
-        }
-        return true; // Poner esto dentro del finally evita que se largue la excepcion
+        return true;
     }
 
     public EventoUniversitario recuperarEvento(String id)
         throws FileNotFoundException, IOException, ClassNotFoundException
     {
-        EventoUniversitario registro = null;
-        FileInputStream fis = null;
-        ObjectInputStream ois = null;
-
-        try {
-            fis = new FileInputStream(
+        try (FileInputStream fis = new FileInputStream(
                     FileUtils.PATH_EVENTS
                   + FileUtils.getFormattedNameForEventID(id)
-            );
-            ois = new ObjectInputStream(fis);
-
-            registro = (EventoUniversitario)(ois.readObject());
-        }
-        finally {
-            if (ois != null) {
-                ois.close();
-            } else if (fis != null) {
-                fis.close();
+            ); ObjectInputStream ois = new ObjectInputStream(fis)) {
+            Object registro = ois.readObject();
+            if (!(registro instanceof EventoUniversitario)) {
+                throw new InvalidObjectException("El archivo no contiene un EventoUniversitario.");
             }
+            return (EventoUniversitario) registro;
         }
-        return registro; // Poner esto dentro del finally evita que se largue la excepcion
     }
 
     public <T extends Actividad> List<T> filtrarActividadesPorTipo(Class<T> tipo) {
+        if (tipo == null) {
+            throw new IllegalArgumentException("Se necesita indicar el tipo de actividad a filtrar.");
+        }
         List<T> ret = new LinkedList<T>();
 
         for (Actividad a : actividades) {
@@ -235,9 +220,15 @@ public class EventoUniversitario
     }
 
     public double calcularCostoMateriales(List<? extends Actividad> actividades) {
+        if (actividades == null) {
+            throw new IllegalArgumentException("La lista de actividades no puede ser nula.");
+        }
         double tot = 0d;
 
         for (Actividad a : actividades) {
+            if (!this.actividades.contains(a)) {
+                throw new IllegalArgumentException("Solo se calculan materiales de actividades de este evento.");
+            }
             tot += a.calcularCostoMateriales();
         }
 
